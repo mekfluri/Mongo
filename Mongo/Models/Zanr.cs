@@ -3,17 +3,14 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace Mongo.Models
 {
-    public class Korisnik
+    public class Zanr
     {
+
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; } = ObjectId.GenerateNewId().ToString();
 
-        public string Username { get; set; } = string.Empty;
-
-        public string Password { get; set; } = string.Empty;
-
-
+        public string Tip { get; set; } = string.Empty;
 
     }
 }

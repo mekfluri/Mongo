@@ -1,29 +1,23 @@
-﻿
-using Microsoft.AspNetCore.Mvc;
-using NapredneBazeMongodb.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using Mongo.Models;
 
-namespace NapredneBazeMongodb.Controllers
+namespace Mongo.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
-    
-    public class KorisnikController : Controller
+    [Route("api/korisnici")]
+    public class KorisnikController : ControllerBase
     {
-
         public KorisnikController() { }
 
-
         [HttpGet]
-        [Route("Login/{username}/{password}")]
-        public ActionResult Login( string username, string password)
+        [Route("login/{username}/{password}")]
+        public ActionResult Login(string username, string password)
         {
-            if (username=="admin" && password=="sifra123")
+            if (username == "admin" && password == "sifra123")
             {
                 return Ok();
             }
             return BadRequest();
         }
-
-
     }
 }

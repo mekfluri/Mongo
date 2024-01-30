@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace NapredneBazeMongodb.Models
+namespace Mongo.Models
 {
     public class Reditelj
     {
@@ -12,7 +12,8 @@ namespace NapredneBazeMongodb.Models
         public string Ime { get; set; } = string.Empty;
 
         public string Prezime { get; set; } = string.Empty;
-        //bio
+        
+        public string Biografija { get; set; } = string.Empty;
 
 
     }

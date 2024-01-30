@@ -6,7 +6,8 @@ using MongoDB.Driver;
 
 var builder = WebApplication.CreateBuilder(args);
 
-const string connectionUri = "mongodb+srv://susulicj:4ucninzkXfk2cmI5@cluster0.gtz9mac.mongodb.net/";
+//const string connectionUri = "mongodb+srv://susulicj:4ucninzkXfk2cmI5@cluster0.gtz9mac.mongodb.net/";
+const string connectionUri = "mongodb+srv://acokanovic14:wTSsF2Msl1COu9PT@mongo.tdt3640.mongodb.net/?retryWrites=true&w=majority";
 
 var settings = MongoClientSettings.FromConnectionString(connectionUri);
 settings.ServerApi = new ServerApi(ServerApiVersion.V1);

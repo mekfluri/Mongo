@@ -8,7 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Text.Json.Serialization;
 
-namespace NapredneBazeMongodb.Models
+namespace Mongo.Models
 {
     public class Glumac
     {
@@ -18,9 +18,9 @@ namespace NapredneBazeMongodb.Models
 
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
-        //bio 
+        public string Biografija { get; set; } = string.Empty;
 
-        
+
 
     }
 }
