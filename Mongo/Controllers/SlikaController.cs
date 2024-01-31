@@ -33,7 +33,7 @@ namespace Mongo.Controllers
             var _filmCollection = _mongoDatabase.GetCollection<Film>("Filmovi");
             var film = await _filmCollection.Find(Builders<Film>.Filter.Eq("Id", filmId)).FirstOrDefaultAsync();
 
-            film.Thumbnail = new MongoDBRef("slika", slika.Id);
+            film.Slika = new MongoDBRef("slika", slika.Id);
             await _filmCollection.ReplaceOneAsync(Builders<Film>.Filter.Eq("Id", filmId), film);
 
             return Ok(slika);
@@ -45,10 +45,10 @@ namespace Mongo.Controllers
         {
             var _filmCollection = _mongoDatabase.GetCollection<Film>("Filmovi");
             var film = await _filmCollection.Find(Builders<Film>.Filter.Eq("Id", filmId)).FirstOrDefaultAsync();
-            if (film.Thumbnail == null)
+            if (film.Slika == null)
                 return BadRequest("Ne postoji slika");
 
-            var slika = await _slikaCollection.Find(Builders<Slika>.Filter.Eq("Id", film.Thumbnail.Id)).FirstOrDefaultAsync();
+            var slika = await _slikaCollection.Find(Builders<Slika>.Filter.Eq("Id", film.Slika.Id)).FirstOrDefaultAsync();
 
             if (slika != null)
                 return Ok(slika);
