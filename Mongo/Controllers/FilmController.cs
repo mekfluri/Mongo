@@ -5,9 +5,11 @@ using MongoDB.Driver;
 using MongoDB.Driver.Core;
 using MongoDB.Driver.Core.Operations;
 using MongoDB.Driver.Core.WireProtocol.Messages.Encoders.JsonEncoders;
+using Microsoft.AspNetCore.Authorization;
 using Mongo.Models;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Security.Claims;
 
 namespace Mongo.Controllers
 {
@@ -30,6 +32,7 @@ namespace Mongo.Controllers
 
         [Route("KreirajFilm")]
         [HttpPost]
+        [Authorize(Roles = "ADMIN")]
         public async Task<ActionResult<Film>> KreirajFilm([FromBody] Film film)
         {
             if(_mongoClient == null)
