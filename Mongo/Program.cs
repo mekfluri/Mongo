@@ -14,6 +14,7 @@ using Mongo.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 const string connectionUri = "mongodb+srv://susulicj:4ucninzkXfk2cmI5@cluster0.gtz9mac.mongodb.net/";
+//4ucninzkXfk2cmI5
 //const string connectionUri = "mongodb+srv://acokanovic14:wTSsF2Msl1COu9PT@mongo.tdt3640.mongodb.net/?retryWrites=true&w=majority";
 
 var settings = MongoClientSettings.FromConnectionString(connectionUri);

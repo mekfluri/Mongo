@@ -7,8 +7,6 @@ namespace Mongo.Models
 {
     public class Komentar
     {
-
-        //ovo mora da se zavrsi kad se napravi korisnik lepo
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; } = ObjectId.GenerateNewId().ToString();
@@ -16,7 +14,10 @@ namespace Mongo.Models
         public string tekst { get; set; } = string.Empty;
 
         [JsonIgnore]
-        public MongoDBRef? Korisnik { get; set; }    
+        public MongoDBRef? Korisnik { get; set; }  
+
+        [JsonIgnore]
+        public MongoDBRef? Film { get; set; }  
     }
       
 }
