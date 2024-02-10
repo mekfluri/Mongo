@@ -5,6 +5,7 @@ import Axios from "axios";
 import "./style.css";
 
 const CardFront = ({
+  godinaPremijere,
   id,
   coverImage, 
   opis,
@@ -58,6 +59,7 @@ const CardFront = ({
 
       <div className="card-footer">
         <h4>{naziv}</h4>
+        <p>Godina premijere : {godinaPremijere}</p>
         <p>{vremeTrajanja} / {zanr}</p>
         <p>Reditelj: {reditelj}</p>
        

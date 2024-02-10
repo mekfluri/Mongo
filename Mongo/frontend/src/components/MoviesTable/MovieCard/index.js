@@ -5,12 +5,15 @@ import "./style.css";
 
 
 export default function ({ movie, LogedIn }) {
+  console.log(movie)
   const {
+    godinaPremijere,
     id,
     naziv,
     opis,
     trejlerUrl,
     vremeTrajanja,
+   
   } = movie;
   const logedIn = LogedIn;
   console.log(id);
@@ -53,6 +56,7 @@ export default function ({ movie, LogedIn }) {
     <div className={`card-container ${isFlipped ? "flipped" : ""}`}>
       <div className="card-wrapper" >
         <FlippingCardFront
+          godinaPremijere={godinaPremijere}
           id={id}
           trejlerUrl={trejlerUrl}
           reditelj={reditelj}

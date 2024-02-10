@@ -61,13 +61,7 @@ namespace Mongo.Controllers
             
             return await _filmCollection.Find(f => true).ToListAsync();
         }
-       /* [HttpGet("VratiSortiraneFilmove")]
-        public async Task<ActionResult<List<Film>>> VratiSortiraneFilmove()
-        {
-            var sortDef = Builders<Film>.Sort.Descending(f => f.prosecnaOcena);
-            var sortiraniFilmovi = await _filmCollection.Find(f => true).Sort(sortDef).ToListAsync();
-            return sortiraniFilmovi;
-        }*/
+
 
         [HttpGet("VratiSortiraneFilmove")]
         public async Task<ActionResult<List<Film>>> VratiSortiraneFilmove()
@@ -155,6 +149,17 @@ namespace Mongo.Controllers
             return rezultat;
         }
 
+        [HttpGet("godinaPremijereFilma/{godina}")]
+        public async Task<List<Film>> godinaPremijereFilma(string godina)
+        {
+            var regexPattern = new BsonRegularExpression(new Regex(godina, RegexOptions.IgnoreCase)); 
+
+            var filmFilter = Builders<Film>.Filter.Regex("GodinaPremijere", regexPattern); 
+            var rezultat = await _filmCollection.Find(filmFilter).ToListAsync();
+            return rezultat;
+        }
+
+
 
 
           [Route("prosecnaOcena/{filmId}/{ocena}")]
@@ -179,99 +184,6 @@ namespace Mongo.Controllers
                 
 
           }
-
-
-       /*[Route("VratiOceneFilma/{filmId}")]
-            [HttpGet]
-            public async Task<ActionResult<List<Ocena>>> VratiOceneFilma(string filmId)
-            {
-                var movie = await _filmCollection.Find(Builders<Film>.Filter.Eq("_id", ObjectId.Parse(filmId))).FirstOrDefaultAsync();
-                
-                if (movie == null)
-                {
-                    return NotFound("Film not found");
-                }
-
-                var oceneCollection = _mongoDatabase.GetCollection<Ocena>("Ocena");
-
-                var ocene = new List<Ocena>();
-
-                foreach (var ocenaRef in movie.Ocene)
-                {
-                    var ocenaId = ocenaRef.Id;
-                    var ocena = await oceneCollection.Find(o => o.Id == ocenaId).FirstOrDefaultAsync();
-                    
-                    if (ocena != null)
-                    {
-                        ocene.Add(ocena);
-                    }
-                }
-
-                return ocene;
-            }*/
-
-        
-        /*[Route("DodajOcenuFilmu/{idFilma}/{ocena}")]
-        [HttpPut]
-        public async Task<ActionResult> DodajOcenuFilmu(string idFilma, int ocena)
-        {
-            var movie = await _filmCollection.Find(Builders<Film>.Filter.Eq("Id", idFilma)).FirstOrDefaultAsync();
-
-            var _ocenaCollection = _mongoDatabase.GetCollection<Ocena>("Ocena");
-
-            FilterDefinition<Ocena> filter = Builders<Ocena>.Filter.Eq("brojOcene", ocena);
-
-
-            var Ocena = await _ocenaCollection.Find(filter).FirstOrDefaultAsync();
-
-            if (Ocena == null)
-
-            {
-               return BadRequest("Kreirajte prvo ocenu");
-            }
-
-            Console.WriteLine(movie.Ocene);
-            foreach (var ocenaRef in movie.Ocene)
-            {
-                Console.WriteLine($"Tip: {ocenaRef.CollectionName}, ID: {ocenaRef.Id}");
-            }
-            movie.Ocene.Add(new MongoDBRef("Ocena", Ocena.Id));
-            Console.WriteLine("uspesno ste dodali");
-
-            await _filmCollection.ReplaceOneAsync(Builders<Film>.Filter.Eq("Id", movie.Id), movie);
-            Console.WriteLine("uspesno ste dodali1");
-
-            return Ok("dodat glumac");
-        }*/
-        /*[Route("DodajOcenuFilmu/{idFilma}/{ocena}")]
-        [HttpPut]
-        public async Task<ActionResult> DodajOcenuFilmu(string idFilma, int ocena)
-        {
-            var movie = await _filmCollection.Find(Builders<Film>.Filter.Eq("Id", idFilma)).FirstOrDefaultAsync();
-
-            var _ocenaCollection = _mongoDatabase.GetCollection<Ocena>("Ocena");
-
-            FilterDefinition<Ocena> filter = Builders<Ocena>.Filter.Eq("brojOcene", ocena);
-
-            var ocenaDocument = await _ocenaCollection.Find(filter).FirstOrDefaultAsync();
-
-            if (ocenaDocument == null)
-            {
-                return BadRequest("Kreirajte prvo ocenu");
-            }
-
-          
-            var bsonArray = new BsonArray(movie.Ocene.Select(oc => new BsonDocument { { "$ref", oc.CollectionName }, { "$id", oc.Id } }));
-            bsonArray.Add(new BsonDocument { { "$ref", "Ocena" }, { "$id", ocenaDocument.Id } });
-
-            var updateDocument = new BsonDocument("$set", new BsonDocument("Ocene", bsonArray));
-
-            await _filmCollection.UpdateOneAsync(Builders<Film>.Filter.Eq("Id", movie.Id), updateDocument);
-
-            return Ok("Dodat glumac");
-        }*/
-
-
 
         [Route("DodajZanrFilmu/{idFilma}/{zanr}")]
         [HttpPut]
@@ -298,41 +210,7 @@ namespace Mongo.Controllers
 
         }
 
-         /*[Route("DodajGlumcaFilmu/{filmId}/{imeGlumca}/{prezimeGlumca}")]
-        [HttpPost]
-        public async Task<ActionResult> DodajGlumca(string filmId, string imeGlumca, string prezimeGlumca)
-        {
-
-
-            var movie = await _filmCollection.Find(Builders<Film>.Filter.Eq("Id", filmId)).FirstOrDefaultAsync();
-            var _glumciCollection = _mongoDatabase.GetCollection<Glumac>("Glumci");
-
-
-            FilterDefinition<Glumac> filter = Builders<Glumac>.Filter.Eq("FirstName", imeGlumca);
-            filter &= Builders<Glumac>.Filter.Eq("LastName", prezimeGlumca);
-
-
-            var actor = await _glumciCollection.Find(filter).FirstOrDefaultAsync();
-                
-            if(actor== null)
-            
-            {
-                actor = new Glumac();
-                actor.FirstName = imeGlumca;
-                actor.LastName = prezimeGlumca;
-                await _glumciCollection.InsertOneAsync(actor);
-            }
-            
-            
-            
-            movie.Glumci.Add(new MongoDBRef("Glumci", actor.Id));
-
-            await _filmCollection.ReplaceOneAsync(Builders<Film>.Filter.Eq("Id", movie.Id), movie);
-
-
-            return Ok("dodat glumac");
-
-        }*/
+       
         [Route("DodajGlumcaFilmu/{filmId}/{imeGlumca}/{prezimeGlumca}")]
         [HttpPost]
         public async Task<ActionResult> DodajGlumca(string filmId, string imeGlumca, string prezimeGlumca)
@@ -379,7 +257,7 @@ namespace Mongo.Controllers
 
         public async Task<ActionResult>ObrisiFilm(string filmId)
         {
-           // var movie = await _filmCollection.Find(Builders<Film>.Filter.Eq("Id", filmId)).FirstOrDefaultAsync();
+           
             var movie = Builders<Film>.Filter.Eq("Id", filmId);
             await _filmCollection.DeleteOneAsync(movie);
             return Ok();
@@ -391,7 +269,6 @@ namespace Mongo.Controllers
             var movie = await _filmCollection.Find(Builders<Film>.Filter.Eq("Id", filmId)).FirstOrDefaultAsync();
             var _glumciCollection = _mongoDatabase.GetCollection<Glumac>("Glumci");
 
-            //            var actor = await _glumciCollection.Find(Builders<Glumac>.Filter.Eq("Id", glumacId)).FirstOrDefaultAsync();
 
             movie.Glumci.Remove(movie.Glumci.Where(p => p.Id == glumacId).FirstOrDefault());
             await _filmCollection.ReplaceOneAsync(Builders<Film>.Filter.Eq("Id", movie.Id), movie);

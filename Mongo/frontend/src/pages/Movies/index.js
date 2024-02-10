@@ -22,18 +22,8 @@ class Movies extends Component {
 
   componentDidMount() {
     this.props.getMovies();
-    //this.props.getGenres();
+ 
   }
-
-  handleChange = (name, value) => {
-    this.setState({ [name]: value, currentPage: 1 });
-  };
-
-  handleKeyPress = (event) => {
-    if (event.key === "Enter") {
-      this.filterMovies();
-    }
-  };
 
   onPageChange = (page) => {
     this.setState({ currentPage: page });
@@ -81,10 +71,9 @@ class Movies extends Component {
 
     let filteredMovies = [];
 
-    // Primena pretrage, kategorizacije i ocenjivanja
+  
     filteredMovies = search(movies, searchFilter, "title");
-    filteredMovies = categorize(filteredMovies, currentGenre);
-    filteredMovies = filterRating(filteredMovies, rating);
+
 
     return (
       <div className="background-container">

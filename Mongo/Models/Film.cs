@@ -16,8 +16,7 @@ namespace Mongo.Models
         public string VremeTrajanja { get; set; } = string.Empty;
         public string GodinaPremijere {get; set;} = string.Empty;
         public string Opis { get; set; } = string.Empty;
-        //da moze da se napravi lista zeljenih filmova 
-        //
+        
 
         [JsonIgnore]
         public MongoDBRef? Zanr { get; set; }

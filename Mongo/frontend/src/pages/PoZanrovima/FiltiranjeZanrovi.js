@@ -30,6 +30,9 @@ class sortiraniFilmovi extends React.Component {
             }else if(izabraniSelect == "naziv")
             {
                 this.loadfilmoviNaziv();
+            }else if(izabraniSelect == "godina")
+            {
+                this.loadfilmoviGodina();
             }
             
         });
@@ -47,6 +50,21 @@ class sortiraniFilmovi extends React.Component {
                 });
             });
     };
+
+    
+    loadfilmoviGodina = () => {
+       
+
+        
+        Axios.get(`http://localhost:5054/Film/godinaPremijereFilma/${this.state.vrednost}`).
+            then(resp => {
+                console.log(resp);
+                this.setState({
+                    filmovi: resp.data
+                });
+            });
+    };
+
 
 
 
