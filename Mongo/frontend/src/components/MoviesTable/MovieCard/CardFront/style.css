@@ -1,0 +1,107 @@
+.front {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.front > img {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+.add,
+.delete,
+.edit {
+  position: absolute;
+  display: block;
+  color: white;
+  width: 50px;
+  height: 50px;
+  padding: 13px;
+  border-radius: 50%;
+  text-align: center;
+  backface-visibility: hidden;
+  font-weight: 700;
+}
+
+.front > .delete {
+  background: rgb(68, 188, 243);
+  right: -10px;
+  top: -10px;
+}
+.front > .add {
+  background: green;
+  right: 60px;
+  top: -10px;
+}
+
+.front > .edit {
+  background: rgb(243, 234, 68);
+  right: 210px;
+  top: -10px;
+}
+
+.card-footer {
+  padding: 15px;
+  position: absolute;
+  border-radius: 5px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 150px;
+  background: #030108;
+}
+
+.card-footer > .dugmici > .trailer-btn,
+.card-footer > i {
+  color: rgb(68, 188, 243);
+  border-color: rgb(68, 188, 243);
+  transition: 0.15s ease-in-out;
+}
+
+.card-footer > i {
+  position: absolute;
+  bottom: 20px;
+  right: 15px;
+}
+
+.card-footer > .dugmici > .trailer-btn {
+  border: 1px solid;
+  padding: 3px 7px;
+  background: transparent;
+  border-radius: 5px;
+  bottom: 20px;
+  left: 15px;
+}
+
+.card-footer > .dugmici > .trailer-btn:hover {
+  text-decoration: none;
+  cursor: pointer;
+  background:rgb(68, 188, 243);
+  border-color: rgb(68, 188, 243);
+  color: white;
+}
+
+.card-footer > h4,
+.card-footer > h5 {
+  margin: 2px 0;
+  text-align: left;
+  font-size: 13px;
+  font-weight: bold;
+  color: white;
+}
+
+.card-footer > p {
+  text-align: left;
+  font-weight: 100;
+  font-size: 11px;
+  color: rgb(255, 255, 255);
+}
+
+.dugmici {
+  display: flex;
+  justify-content: space-between;
+}

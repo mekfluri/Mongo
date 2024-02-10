@@ -1,0 +1,25 @@
+.btn {
+  text-align: center;
+  display: inline-block; /* Use inline-block for a more compact layout */
+  color: white;
+  padding: 15px 50px;
+  border: 2px solid transparent; /* Add border for a cleaner look */
+  border-radius: 25px; /* Slightly reduce border-radius */
+  background: linear-gradient(to top, #3498db, #2980b9); /* Use a different gradient */
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+  margin-top: 2%;
+}
+
+.btn:hover {
+  background: linear-gradient(to top, #2980b9, #3498db); /* Adjust hover gradient */
+  color: #fff; /* Set hover text color */
+  border-color: #3498db; /* Set hover border color */
+}
+
+.btn:disabled {
+  background: linear-gradient(to top, rgb(184, 65, 44), rgb(189, 59, 89));
+  color: lightgray;
+  cursor: not-allowed; /* Disable pointer events on disabled state */
+  border-color: transparent; /* Remove border on disabled state */
+}

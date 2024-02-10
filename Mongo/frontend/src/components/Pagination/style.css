@@ -1,0 +1,46 @@
+.pagination-container {
+  justify-content: center;
+  display: flex;
+  margin-top: 20px; /* Add some spacing from the content */
+}
+
+.page-active {
+  background: #e74c3c !important; /* Change to a different color */
+  transition: background-color 0.2s ease-in-out;
+}
+
+.pagination-container > ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+.pagination-container > ul > li {
+  padding: 15px;
+  display: inline-flex; /* Use inline-flex for better alignment */
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 50px;
+  border-radius: 5px;
+  margin: 0px 5px;
+  background: #2c3e50; /* Change background color to your preference */
+  color: #ecf0f1; /* Change text color to your preference */
+  font-weight: bold; /* Add bold text */
+  font-size: 16px; /* Increase font size */
+  transition: background-color 0.2s ease-in-out;
+}
+
+.pagination-container > ul > li:hover {
+  cursor: pointer;
+  background: #34495e; /* Change hover background color */
+}
+
+.pagination-container > ul > li:first-child {
+  margin-left: 0; /* Remove left margin for the first item */
+}
+
+.pagination-container > ul > li:last-child {
+  margin-right: 0; 
+}

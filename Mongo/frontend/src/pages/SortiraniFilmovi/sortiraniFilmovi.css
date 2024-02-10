@@ -1,0 +1,53 @@
+.input-container {
+    position: relative;
+    text-align: left;
+    margin: 20px 0;
+  }
+  
+  .input-container > label {
+    margin: 8px 0;
+    color: #3498db; 
+    font-size: 14px;
+  }
+  .filmheder {
+    font-size: 36px; 
+    font-weight: bold; 
+    color: #ffffff; 
+    text-align: start; 
+    list-style-type: none; 
+    text-transform: uppercase; 
+    letter-spacing: 2px; 
+    margin-bottom: 5px; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+  }
+  .dugmePretrazi{
+    margin: 10px;
+  }
+  
+  .input-container > select {
+    width: 100%;
+    padding: 12px;
+    height: 50px;
+    background: #2c3e50; 
+    border: 2px solid #3498db; 
+    border-radius: 25px; 
+    color: #ecf0f1;
+    transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  }
+  
+  .input-container > select > option {
+    padding: 10px; 
+  }
+  
+  .input-container > select:focus {
+    outline: none;
+    border-color: #2980b9; 
+    background: #34495e;
+    color: #fff;
+  }
+  
+  li {
+    font-size: 16px; 
+    color: #fff; 
+  }
+  

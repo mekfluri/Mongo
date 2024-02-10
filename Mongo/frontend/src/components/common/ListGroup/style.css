@@ -1,0 +1,22 @@
+.list-item {
+  text-align: center; /* Center text for better readability */
+  background: #2c3e50; /* Darker background color */
+  color: #ecf0f1; /* Lighter text color */
+  font-size: 16px; /* Slightly increase font size */
+  padding: 15px; /* Add padding for better spacing */
+  border-bottom: 1px solid #34495e; /* Subtle bottom border */
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.list-item:hover {
+  background: #34495e; /* Darken background color on hover */
+  color: #fff; /* Change text color on hover */
+}
+
+.list-item-active {
+  border-left: 3px solid #3498db; /* Use a blue border for active item */
+  background: #2c3e50; /* Darker background color for active item */
+  color: #ecf0f1; /* Lighter text color for active item */
+  font-weight: bold; /* Add bold font for active item */
+  transition: border-color 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}

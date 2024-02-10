@@ -1,0 +1,40 @@
+.input-container {
+  position: relative;
+  text-align: left;
+  margin: 20px 0;
+}
+
+.input-container > label {
+  margin: 8px 0;
+  color: #3498db; /* Use the blue color from the button */
+  font-size: 14px;
+}
+
+.input-container > input {
+  width: 100%;
+  padding: 15px;
+  height: 60px;
+  background: #2c3e50; /* Use a darker background color */
+  border: 2px solid #3498db; /* Use the blue color for border */
+  border-radius: 30px;
+  color: #ecf0f1;
+  transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.input-container > input:focus {
+  outline: none;
+  border-color: #2980b9; /* Darken border color on focus */
+  background: #34495e; /* Darken background color on focus */
+  color: #fff;
+}
+
+.input-container > .input-icon {
+  position: absolute;
+  margin-right: 1%;
+  color: #3498db; /* Use the blue color from the button */
+  z-index: 2;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 20px;
+  font-size: 18px;
+}

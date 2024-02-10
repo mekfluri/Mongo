@@ -1,0 +1,18 @@
+body {
+ margin-top:20px;
+}
+
+.background-container {
+  scroll-behavior: smooth;
+  background: linear-gradient(to bottom, #000000, #3498db); /* Gradient from black to blue */
+  min-height: 100vh;
+  height: fit-content;
+
+  
+}
+#root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
