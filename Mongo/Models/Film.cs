@@ -31,15 +31,22 @@ namespace Mongo.Models
         [JsonIgnore]
         public IList<MongoDBRef> Glumci { get; set; }
 
-        [JsonIgnore]
-        public IList<MongoDBRef> Ocene {get; set; }  
+        /*[JsonIgnore]
+        public IList<MongoDBRef> Ocene {get; set; }  */
         //public List<string> Ocene { get; set; } = new List<string>();
+   
+        public float prosecnaOcena { get; set; } = 0;
+        
+        [JsonIgnore]
+        public int brojOcena { get; set; } = 0;
+
+
 
 
         public Film()
         {
             Glumci = new List<MongoDBRef>();
-            Ocene = new List<MongoDBRef>();
+           // Ocene = new List<MongoDBRef>();
         }
 
      }

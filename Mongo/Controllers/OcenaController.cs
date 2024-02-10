@@ -13,6 +13,7 @@ namespace Mongo.Controllers
     {
         private readonly IMongoClient _mongoClient;
         private readonly IMongoCollection<Ocena> _ocenaCollection;
+        private readonly IMongoCollection<Film> _filmCollection;
         private readonly IMongoDatabase _mongoDatabase;
         private readonly ILogger<OcenaController> _logger;
 
@@ -21,6 +22,7 @@ namespace Mongo.Controllers
             _mongoClient = mongoClient;
             _mongoDatabase = _mongoClient.GetDatabase("NovaBaza");
             _ocenaCollection = _mongoDatabase.GetCollection<Ocena>(nameof(Ocena));
+            _filmCollection = _mongoDatabase.GetCollection<Film>("Filmovi");
             _logger = logger;
         }
 
@@ -38,6 +40,10 @@ namespace Mongo.Controllers
         {
             return await _ocenaCollection.Find(f => true).ToListAsync();
         }
+        
+
+
+
 
     }
 }

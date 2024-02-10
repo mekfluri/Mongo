@@ -9,6 +9,10 @@ using Mongo.Models;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Security.Claims;
+using MongoDB.Bson;
+using MongoDB.Driver;
+using MongoDB.Driver.Linq;
+using System.Linq;
 
 namespace Mongo.Controllers
 {
@@ -18,6 +22,7 @@ namespace Mongo.Controllers
     {
         private readonly IMongoClient _mongoClient;
         private readonly IMongoCollection<Komentar> _komentarCollection;
+        private readonly IMongoCollection<ApplicationUser> _userCollection;
         private readonly IMongoDatabase _mongoDatabase;
       
         public KomentarController(IMongoClient mongoClient)
@@ -26,6 +31,7 @@ namespace Mongo.Controllers
             _mongoClient = mongoClient;
             _mongoDatabase = _mongoClient.GetDatabase("NovaBaza");
             _komentarCollection = _mongoDatabase.GetCollection<Komentar>("Komentar");
+            _userCollection = _mongoDatabase.GetCollection<ApplicationUser>("users");
          
         }
 
@@ -123,6 +129,35 @@ namespace Mongo.Controllers
 
             return Ok(komentariZaFilm);
         }
+        
+      
+        [Route("KorisnikKomentara/{idKomentara}")]
+        [HttpGet]
+        public async Task<ActionResult<ApplicationUser>> VratiKorisnikaKomentara(string idKomentara)
+        {
+            var filter = Builders<Komentar>.Filter.Eq("Id", idKomentara);
+            var komentar = await _komentarCollection.Find(filter).FirstOrDefaultAsync();
+
+            if (komentar == null)
+            {
+                return NotFound($"Komentar sa ID {idKomentara} nije pronađen.");
+            }
+
+            var korisnikId = komentar.Korisnik.Id;
+            Console.WriteLine(korisnikId);
+            var korisnikFilter = Builders<ApplicationUser>.Filter.Eq("UserName", korisnikId);
+            var korisnik = await _userCollection.Find(korisnikFilter).FirstOrDefaultAsync();
+
+            if (korisnik == null)
+            {
+                return NotFound($"Korisnik koji je napisao komentar nije pronađen.");
+            }
+
+            return Ok(korisnik);
+        }
+
+
+        
 
 
 

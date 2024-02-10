@@ -56,5 +56,27 @@ namespace Mongo.Controllers
             return Ok("Dodat glumac");
           
         }
+       [HttpGet]
+[Route("PregledajFilmoveZaKasnije/{idKorisnika}")]
+public async Task<ActionResult<IEnumerable<Film>>> PregledajFilmoveZaKasnije(string idKorisnika)
+{
+    var user = await _userCollection.Find(Builders<ApplicationUser>.Filter.Eq("Id", idKorisnika)).FirstOrDefaultAsync();
+    
+    if (user == null)
+    {
+        return NotFound("Korisnik nije pronađen");
+    }
+    var  _filmCollection = _mongoDatabase.GetCollection<Film>("Filmovi");
+    var filmoviIds = user.Filmovi.Select(f => ObjectId.Parse(f.Id.AsString));
+
+    var filter = Builders<Film>.Filter.In("_id", filmoviIds);
+
+    var filmovi = await _filmCollection.Find(filter).ToListAsync();
+
+    return Ok(filmovi);
+}
+
+
+
     }
 }
