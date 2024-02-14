@@ -1,0 +1,1 @@
+Pre pokretanja instalirati npm
